@@ -7,7 +7,10 @@ import pipes
 import shutil
 import os
 
-START_SANDSTONE_SCRIPT = os.path.join(os.path.abspath(__file__), 'start_sandstone.sh')
+SANDSTONE_HOME = os.environ.get('SANDSTONE_HOME')
+APP_PATH = os.path.join(SANDSTONE_HOME, 'sandstone', 'app.py')
+PYTHON_DIR = os.environ.get('PYTHON_DIR')
+PYTHON_BIN = os.path.join(PYTHON_DIR, 'python')
 
 
 class SandstoneSpawner(LocalProcessSpawner):
@@ -16,16 +19,12 @@ class SandstoneSpawner(LocalProcessSpawner):
     def start(self):
         """Start the single-user server."""
         self.port = random_port()
-        cmd = [START_SANDSTONE_SCRIPT]
+        cmd = [PYTHON_BIN, APP_PATH]
         env = self.get_env()
 
-        # cmd.extend(self.cmd)
-        # cmd.extend('{}'.format(self.port))
         args = self.get_args()
         # print(args)
         cmd.extend(args)
-        # import os
-        # self.log.info(os.path.dirname(os.path.abspath(__file__)))
 
         self.log.info("Spawning %s", ' '.join(pipes.quote(s) for s in cmd))
         try:
