@@ -27,4 +27,4 @@ class JupyterHubLoginHandler(BaseHandler):
             self.redirect('/user/{}'.format(username))
         else:
             self.set_status(403)
-            self.finish()
+            self.redirect(self.get_login_url())
