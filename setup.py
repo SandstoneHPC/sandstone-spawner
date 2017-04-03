@@ -1,10 +1,11 @@
 import os
 import sys
 from distutils.core import setup
+from setuptools import find_packages
 
 setup_args = dict(
     name='sandstone_spawner',
-    packages=['sandstone_spawner'],
+    packages=find_packages(),
     version="1.0",
     description="""Spawner class to launch Sandstone HPC user instances""",
     long_description="",
