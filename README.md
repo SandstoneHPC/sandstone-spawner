@@ -8,7 +8,7 @@ JupyterHub Spawner class for starting Sandstone HPC user instances
 * Set the `SANDSTONE_HOME` environment variable to the fully qualified path where sandstone is located.
 * Set the `PYTHON_DIR` environment variable to the path of the **Python 2 interpreter used by Sandstone**. This could be the path to the `bin` directory of the virtualenv used by Sandstone.
 * Run jupyterhub with the `jupyterhub` command.
-* Signin will start a Sandstone instance
+* Signing in will start a Sandstone instance
 
 ## The `jupyterhub_config` file
 The `jupyterhub_config` file is modified to set the default spawner as `SandstoneSpawner`.
