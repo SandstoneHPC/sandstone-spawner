@@ -3,7 +3,7 @@ from distutils.core import setup
 from setuptools import find_packages
 
 setup(
-    name='sandstone',
+    name='sandstone-spawner',
     version='0.1.0',
     author=u'Zebula Sampedro',
     author_email='sampedro@colorado.edu',

@@ -7,11 +7,11 @@ import pipes
 import shutil
 import os
 
-SANDSTONE_HOME = os.environ.get('SANDSTONE_HOME')
-APP_PATH = os.path.join(SANDSTONE_HOME, 'sandstone', 'app.py')
-PYTHON_DIR = os.environ.get('PYTHON_DIR')
-PYTHON_BIN = os.path.join(PYTHON_DIR, 'python')
 
+
+# This is the path to the sandstone-jupyterhub script
+APP_PATH = os.environ.get('SANDSTONE_APP_PATH')
+SANDSTONE_SETTINGS = os.environ.get('SANDSTONE_SETTINGS')
 
 class SandstoneSpawner(LocalProcessSpawner):
 
@@ -19,8 +19,9 @@ class SandstoneSpawner(LocalProcessSpawner):
     def start(self):
         """Start the single-user server."""
         self.port = random_port()
-        cmd = [PYTHON_BIN, APP_PATH]
+        cmd = [APP_PATH]
         env = self.get_env()
+        env['SANDSTONE_SETTINGS'] = SANDSTONE_SETTINGS
 
         args = self.get_args()
         # print(args)
