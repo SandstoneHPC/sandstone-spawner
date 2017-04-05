@@ -1,20 +1,21 @@
 # sandstone-spawner
 JupyterHub Spawner class for starting Sandstone HPC user instances
 
-## Setup instructions
-* Clone the repository. `git clone https://github.com/ResearchComputing/sandstone-spawner.git`
-* Create a new virtualenv for **Python 3**. and activate it
-* Install the requirements: `pip install -r requirements.txt`
-* Set the `SANDSTONE_HOME` environment variable to the fully qualified path where sandstone is located.
-* Set the `PYTHON_DIR` environment variable to the path of the **Python 2 interpreter used by Sandstone**. This could be the path to the `bin` directory of the virtualenv used by Sandstone.
-* Run jupyterhub with the `jupyterhub` command.
-* Signing in will start a Sandstone instance
+## Installation
+**This module requires the JupyterHub Login Handler for Sandstone, found at https://github.com/SandstoneHPC/sandstone-jupyterhub-login**
 
-## The `jupyterhub_config` file
-The `jupyterhub_config` file is modified to set the default spawner as `SandstoneSpawner`.
+Install the module with
+```
+python setup.py install
+```
 
-The following line sets the spawner as `SandstoneSpawner`
+Set the `SANDSTONE_APP_PATH` environment variable to the absolute path of the `sandstone-jupyterhub` executable. This executable is provided by `sandstone-jupyterhub-login`.
+```
+export SANDSTONE_APP_PATH=/path/to/sandstone-jupyterhub
+```
 
-`c.JupyterHub.spawner_class = 'sandstone_spawner.SandstoneSpawner'`
-
-Other JupyterHub parameters can also be configured in the `jupyterhub_config` file.
+## JupyterHub Config
+Modify your JupyterHub config file to set the default spawner as `SandstoneSpawner`.
+```python
+c.JupyterHub.spawner_class = 'sandstone_spawner.spawner.SandstoneSpawner'
+```
