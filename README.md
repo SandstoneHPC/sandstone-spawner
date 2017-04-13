@@ -9,7 +9,7 @@ Install the module with
 python setup.py install
 ```
 
-Set the `SANDSTONE_APP_PATH` environment variable to the absolute path of the `sandstone-jupyterhub` executable. This executable is provided by `sandstone-jupyterhub-login`.
+Set the `SANDSTONE_SETTINGS` environment variable to the absolute path of your Sandstone settings file, and then set the `SANDSTONE_APP_PATH` environment variable to the absolute path of the `sandstone-jupyterhub` executable. This executable is provided by `sandstone-jupyterhub-login`.
 ```
 export SANDSTONE_APP_PATH=/path/to/sandstone-jupyterhub
 ```
