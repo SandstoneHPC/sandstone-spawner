@@ -53,3 +53,14 @@ class SandstoneSpawner(LocalProcessSpawner):
                 self.user.server.ip = self.ip
             self.user.server.port = self.port
         return (self.ip or '127.0.0.1', self.port)
+
+    @gen.coroutine
+    def _signal(self, sig):
+        try:
+            os.killpg(os.getpgid(self.pid), sig)
+        except OSError as e:
+            if e.errno == errno.ESRCH:
+                return False
+            else:
+                raise
+        return True
