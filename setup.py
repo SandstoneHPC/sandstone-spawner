@@ -19,13 +19,9 @@ setup(
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
-        'Intended Audience :: Developers',
-        'Natural Language :: English',
         'Operating System :: Unix',
         'Topic :: Software Development :: User Interfaces',
-        'Topic :: Software Development :: Build Tools',
         'Topic :: Text Editors :: Integrated Development Environments (IDE)',
-        'Topic :: Terminals :: Terminal Emulators/X Terminals',
         'License :: OSI Approved :: MIT License',
     ]
 )
