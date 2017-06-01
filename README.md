@@ -1,4 +1,6 @@
 # sandstone-spawner
+[![DOI](https://zenodo.org/badge/86104298.svg)](https://zenodo.org/badge/latestdoi/86104298)
+
 JupyterHub Spawner class for starting Sandstone HPC user instances
 
 ## Installation
