@@ -20,6 +20,13 @@ class SandstoneSpawner(LocalProcessSpawner):
         """
     ).tag(config=True)
 
+    sudo_cmd = Command(['/usr/bin/sudo -u {username}'],
+        help="""
+        This command will be prepended to the server spawn command when setuid_enabled is False.
+        Accepts `username` as a formatting parameter.
+        """
+    ).tag(config=True)
+
     sandstone_settings = Unicode('',
         help="""
         This is the absolute path to the settings module that should be imported by each
@@ -58,10 +65,12 @@ class SandstoneSpawner(LocalProcessSpawner):
 
     @property
     def cmd(self):
+        """Builds the server spawn command based on spawner configuration."""
         cmd = []
         if not self.setuid_enabled:
-            sudo_cmd = 'sudo -u {username}'.format(username=self.user.name)
-            cmd.append(sudo_cmd)
+            fmt_dict = dict(username=self.user.name)
+            sudo_cmd = [s.format(**fmt_dict) for s in self.sudo_cmd]
+            cmd.extend(sudo_cmd)
         cmd.extend(self.sandstone_cmd)
         return cmd
 
